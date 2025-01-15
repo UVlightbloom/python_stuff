@@ -3,7 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import sqlite3
 
-# Global variables 4 program
+# Global variables 
 balance = 0  # Initialize balance to 0
 transactions = []  # Initialize with no transactions
 categories = ["Subscriptions", "Bills", "Food", "Entertainment", "Rent", "Transportation", "Other"]
