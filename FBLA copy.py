@@ -3,12 +3,12 @@ from tkinter import ttk
 from tkinter import messagebox
 import sqlite3
 
-# Global variables 
-balance = 0  # Initialize balance to 0
-transactions = []  # Initialize with no transactions
+# Global variables for da program 
+balance = 0  # start balence with zero 
+transactions = []  # start w no transactions 
 categories = ["Subscriptions", "Bills", "Food", "Entertainment", "Rent", "Transportation", "Other"]
 
-# Database setup
+# basically creates the file where all the data is being held for the program so it no forget it when you close it :3
 def initialize_database():
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
@@ -25,11 +25,11 @@ USERNAME = "user"
 PASSWORD = "password"
 
 def update_balance_display():
-    #Update the balance display on the main window.
+    #automatically updates the balence for you 
     balance_label.config(text=f"Balance: ${balance:.2f}")
 
 def refresh_balance():
-    #Refresh the balance and transaction display
+    #Refresh the balance and transaction display for funzies 
     update_balance_display()
     update_transaction_table()
     messagebox.showinfo("Refresh", "Balance and transactions refreshed.")
@@ -96,13 +96,13 @@ def open_deposit_window():
     tk.Button(deposit_window, text="Submit", command=submit_deposit).pack(pady=5)
 
 def open_edit_transaction_window():
-    # another pop-up
+    # another pop-up 
     def load_transaction_details(event):
         selected_index = transaction_listbox.curselection()
         if not selected_index:
             return
         index = selected_index[0]
-        transaction = transactions[index]
+        transaction = transactions[index] #pulls info from index/database
 
         amount_entry.delete(0, tk.END)
         amount_entry.insert(0, transaction["amount"])
