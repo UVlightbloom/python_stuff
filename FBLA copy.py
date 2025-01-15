@@ -102,7 +102,7 @@ def open_edit_transaction_window():
         if not selected_index:
             return
         index = selected_index[0]
-        transaction = transactions[index] #pulls info from index/database
+        transaction = transactions[index] #pulls info from index/database for you to change up :3 
 
         amount_entry.delete(0, tk.END)
         amount_entry.insert(0, transaction["amount"])
@@ -110,7 +110,7 @@ def open_edit_transaction_window():
         category_var.set(transaction["category"])
         recurring_var.set(transaction["recurring"])
 
-    def save_transaction(): 
+    def save_transaction(): #allows for transactions to be saved back onto the database 
         selected_index = transaction_listbox.curselection()
         if not selected_index:
             messagebox.showerror("Error", "No transaction selected to edit!")
@@ -118,7 +118,7 @@ def open_edit_transaction_window():
 
         index = selected_index[0]
         try:
-            new_amount = float(amount_entry.get())
+            new_amount = float(amount_entry.get()) #new
             new_category = category_var.get()
             new_recurring = recurring_var.get()
 
