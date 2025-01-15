@@ -25,20 +25,20 @@ USERNAME = "user"
 PASSWORD = "password"
 
 def update_balance_display():
-    """Update the balance display on the main window."""
+    #Update the balance display on the main window.
     balance_label.config(text=f"Balance: ${balance:.2f}")
 
 def refresh_balance():
-    """Refresh the balance and transaction display."""
+    #Refresh the balance and transaction display
     update_balance_display()
     update_transaction_table()
     messagebox.showinfo("Refresh", "Balance and transactions refreshed.")
 
 def open_withdraw_window():
-    """Open a pop-up window for withdrawals."""
+    #Open little window 4 withdrawls
     def submit_withdrawal():
         global balance
-        try:
+        try: # take away money :3
             amount = float(amount_entry.get())
             category = category_var.get()
             if amount > balance:
@@ -54,6 +54,7 @@ def open_withdraw_window():
         except ValueError:
             messagebox.showerror("Error", "Invalid amount entered!")
 
+# configuration for the window in order plug-in, title, sub-titles, amount entry, then making a combobox 4 the catogries and other buttons
     withdraw_window = tk.Toplevel(root)
     withdraw_window.title("Withdraw")
     tk.Label(withdraw_window, text="Enter withdrawal amount:").pack(pady=5)
@@ -66,10 +67,10 @@ def open_withdraw_window():
     tk.Button(withdraw_window, text="Submit", command=submit_withdrawal).pack(pady=5)
 
 def open_deposit_window():
-    """Open a pop-up window for deposits."""
+    #another pop-up
     def submit_deposit():
         global balance
-        try:
+        try: #add money :3 
             amount = float(amount_entry.get())
             category = category_var.get()
             balance += amount
@@ -82,6 +83,7 @@ def open_deposit_window():
         except ValueError:
             messagebox.showerror("Error", "Invalid amount entered!")
 
+# configuration for the window in order plug-in, title, sub-titles, amount entry, then making a combobox 4 the catogries and other buttons
     deposit_window = tk.Toplevel(root)
     deposit_window.title("Deposit")
     tk.Label(deposit_window, text="Enter deposit amount:").pack(pady=5)
@@ -94,7 +96,7 @@ def open_deposit_window():
     tk.Button(deposit_window, text="Submit", command=submit_deposit).pack(pady=5)
 
 def open_edit_transaction_window():
-    """Open a pop-up window to edit transactions."""
+    # another pop-up
     def load_transaction_details(event):
         selected_index = transaction_listbox.curselection()
         if not selected_index:
@@ -108,7 +110,7 @@ def open_edit_transaction_window():
         category_var.set(transaction["category"])
         recurring_var.set(transaction["recurring"])
 
-    def save_transaction():
+    def save_transaction(): 
         selected_index = transaction_listbox.curselection()
         if not selected_index:
             messagebox.showerror("Error", "No transaction selected to edit!")
@@ -120,7 +122,7 @@ def open_edit_transaction_window():
             new_category = category_var.get()
             new_recurring = recurring_var.get()
 
-            transactions[index]["amount"] = new_amount
+            transactions[index]["amount"] = new_amount # changes are saved 2 [index] and then  refreshes the balence 
             transactions[index]["category"] = new_category
             transactions[index]["recurring"] = new_recurring
 
@@ -129,6 +131,8 @@ def open_edit_transaction_window():
             messagebox.showinfo("Success", "Transaction updated successfully!")
         except ValueError:
             messagebox.showerror("Error", "Invalid amount entered!")
+
+# lines 137 to 163 all ui perameters 
 
     edit_window = tk.Toplevel(root)
     edit_window.title("Edit Transaction")
